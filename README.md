@@ -1,1 +1,1 @@
-# gzclp
+# GZCLP Program Calculator
