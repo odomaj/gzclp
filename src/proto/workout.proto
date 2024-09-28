@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+message Set
+{
+    int32 weight = 1;
+    uint32 reps = 2;
+}
+
+message Exercise
+{
+    string name = 1;
+    uint32 priority = 2;
+    uint32 block = 3;
+    string unit = 4;
+    repeated Set sets = 5;
+}
+
+message Workout
+{
+    uint32 month = 1;
+    uint32 day = 2;
+    uint32 year = 3;
+    string split_id = 4;
+    repeated Exercise exercises = 5;
+}

@@ -1,23 +1,23 @@
-[Tuesday]
+[Upper1]
 
 T1 = "Bent Over Row"
-T2 = ["Bench Press, Lat Pulldown"]
+T2 = ["Bench Press", "Lat Pulldown"]
 T3 = ["Lu Lateral Raise", "Zotman Curl"]
 
-[Wednesday]
+[Lower1]
 
 T1 = "Back Squat"
-T2 = ["Front Squat", "Romanian Deadlift"]
+T2 = ["Pause Back Squat", "Romanian Deadlift"]
 T3 = ["Glute Ham Raise", "Pass the Plate", "Calf Raise"]
 
-[Saturday]
+[Upper2]
 
 T1 = "Push Press"
 T2 = ["Upright Row", "Behind the Neck Press"]
 T3 = ["Lateral Raise", "Overhead Tricep Press"]
 
-[Sunday]
+[Lower2]
 
 T1 = "Snatch Grip Deadlift"
-T2 = ["Back Squat", "Goodmorning"]
+T2 = ["Front Squat", "Goodmorning"]
 T3 = ["Rounded Glute Ham Raise", "Hanging Leg Raise", "Calf Raise"]
