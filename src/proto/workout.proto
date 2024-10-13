@@ -12,7 +12,8 @@ message Exercise
     uint32 priority = 2;
     uint32 block = 3;
     string unit = 4;
-    repeated Set sets = 5;
+    string split = 5;
+    repeated Set set = 6;
 }
 
 message Workout
@@ -21,5 +22,5 @@ message Workout
     uint32 day = 2;
     uint32 year = 3;
     string split_id = 4;
-    repeated Exercise exercises = 5;
+    repeated Exercise exercise = 5;
 }

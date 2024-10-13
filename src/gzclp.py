@@ -1,6 +1,7 @@
 import toml
 import sys
 from get_file import get_file
+from history import Database
 from proto.workout_pb2 import Set, Exercise, Workout
 
 
@@ -18,6 +19,7 @@ def kilos_to_pounds(kilos: int) -> int:
 
 class Gzclp:
     def __init__(self, config: dict) -> None:
+        self.history = Database()
         self.lower = []
         self.upper = []
         for workout in config:
@@ -88,18 +90,60 @@ class Gzclp:
         exercise = Exercise()
         exercise.name = workout_config["T1"]
         exercise.priority = 1
-        workout.exercises.append(exercise)
+        workout.exercise.append(exercise)
 
         exercise.priority = 2
         for exercise_name in workout_config["T2"]:
             exercise.name = exercise_name
-            workout.exercises.append(exercise)
+            workout.exercise.append(exercise)
 
         exercise.priority = 3
         for exercise_name in workout_config["T3"]:
             exercise.name = exercise_name
-            workout.exercises.append(exercise)
+            workout.exercise.append(exercise)
 
+        return workout
+
+    def setup(self) -> None:
+        pass
+
+    def same_exercise(
+        self, first_exercise: Exercise, second_exercise: Exercise
+    ) -> bool:
+        if first_exercise.name != second_exercise.name:
+            return False
+        if first_exercise.priority != second_exercise.priority:
+            return False
+        if first_exercise.split != second_exercise.split:
+            return False
+        return True
+
+    def same_workout(
+        self, first_workout: Workout, second_workout: Workout
+    ) -> bool:
+        if first_workout.split_id != second_workout.split_id:
+            return False
+        if len(first_workout.exercise) != len(second_workout.exercise):
+            return False
+        for i in range(len(first_workout.exercise)):
+            if self.same_exercise(
+                first_workout.exercise[i], second_workout.exercise[i]
+            ):
+                return False
+        return True
+
+    def update_exercise(self, exercise: Exercise) -> Exercise:
+        new_exercise = Exercise()
+        return new_exercise
+
+    def fill_workout(self, workout: Workout) -> Workout:
+        last_workout = self.history.last_workout(workout.split_id)
+        if not self.same_workout(workout, last_workout):
+            return None
+        for i in range(len(workout.exercise)):
+            workout.exercise[i] = self.update_exercise(
+                last_workout.exercise[i]
+            )
         return workout
 
 
